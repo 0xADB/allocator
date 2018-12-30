@@ -8,7 +8,9 @@
 #include <cassert>
 #include <iostream>
 
-namespace all_o_cator
+namespace nonstd
+{
+namespace allocator
 {
 #if __cplusplus >= 201103L && __cplusplus <= 201402L
   template<typename T, size_t N>
@@ -77,7 +79,7 @@ namespace all_o_cator
       return *this;
     }
 
-    T * allocate(std::size_t n)
+    pointer allocate(std::size_t n)
     {
       if (end_ + n > storage_.get() + N)
 	throw std::bad_alloc();
@@ -128,4 +130,5 @@ namespace all_o_cator
     T * end_;
   };
 #endif // __cplusplus <= 201402L
-}
+} // allocator
+} //nonstd

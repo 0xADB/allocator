@@ -184,8 +184,7 @@ namespace nonstd
       using node_type = list_details::node<T>;
       using node_base_type = typename node_type::base_type;
       using header_type = list_details::header;
-      using alloc_type = typename Allocator::template rebind<T>::other;
-      using node_alloc_type = typename Allocator::template rebind<node_type>::other;
+      using node_allocator = typename Allocator::template rebind<node_type>::other;
 
     public:
       using value_type = T;
@@ -320,48 +319,39 @@ namespace nonstd
 
 	if ((*end)->_next != &_header._node)
 	{
-	  typename node_alloc_type::pointer node = (*end)->_next;
+	  auto node = (*end)->_next;
 	  (*end)->_next = &_header._node;
 	  destroy_node(node);
 	}
       }
 
     private:
-      typename node_alloc_type::pointer
-	create_node(const value_type& value)
-      {
-	auto node = allocator.allocate(sizeof(node_type));
-	allocator.construct(node, value);
-	return node;
-      }
-
       template<typename... Args>
-	typename node_alloc_type::pointer
-	create_node(Args&&... args)
+	auto create_node(Args&&... args)
       {
-	auto node = allocator.allocate(sizeof(node_type));
-	allocator.construct(&node->_value, std::move(args...));
+	typename node_allocator::pointer node = allocator.allocate(1);
+	allocator.construct(node, std::forward<Args>(args)...);
 	return node;
       }
 
-      void destroy_node(typename node_alloc_type::pointer node)
+      void destroy_node(typename node_allocator::pointer node)
       {
-	allocator.destroy(&node->_value);
-	allocator.deallocate(&node->value, sizeof(node_type));
+	allocator.destroy(node);
+	allocator.deallocate(node, sizeof(node_type));
       }
 
       void destroy(list_details::header& header)
       {
 	list_details::node_base * next = header._node._next;
-	while (next)
+	while (next != &header._node)
 	{
 	  auto it = next;
 	  next = it->_next;
-	  destroy_node(static_cast<typename node_alloc_type::pointer>(it));
+	  destroy_node(static_cast<typename node_allocator::pointer>(it));
 	}
       }
 
-      typename node_alloc_type::pointer clone (const typename node_alloc_type::pointer other_head)
+      auto clone (const typename node_allocator::pointer other_head)
       {
 	list_details::header header;
 	list_details::node_base ** it = &header._node._next;
@@ -379,6 +369,6 @@ namespace nonstd
 
     private:
       header_type _header;
-      Allocator allocator{};
+      node_allocator allocator{};
   };
 }
