@@ -143,7 +143,7 @@ namespace allocator
 	  //     , static_cast<difference_type>(_end - reinterpret_cast<byte_type *>(p)) + size
 	  //     );
 	  // _end -= size;
-	  assert(_storage <= _end);
+	  // assert(_storage <= _end);
 	  return true;
 	}
 	return false;
