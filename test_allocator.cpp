@@ -10,6 +10,8 @@ using namespace std::string_literals;
 
 #include <boost/test/unit_test.hpp>
 
+// FIXME: feeling like I test list(vector, map) here instead of allocator...
+
 BOOST_AUTO_TEST_SUITE(test_suite_main)
 
   BOOST_AUTO_TEST_CASE(test_list_copy)
@@ -19,6 +21,7 @@ BOOST_AUTO_TEST_SUITE(test_suite_main)
     std::list<int, nonstd::allocator::humble<int, 10>> l3(l1.begin(), l1.end());
     BOOST_CHECK(std::equal(l1.begin(), l1.end(), l2.begin(), l2.end()));
     BOOST_CHECK(std::equal(l1.begin(), l1.end(), l3.begin(), l3.end()));
+
   }
 
   BOOST_AUTO_TEST_CASE(test_list_erase)

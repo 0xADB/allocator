@@ -1,58 +1,82 @@
 #include "humble_allocator.h"
 
 #include <iostream>
-#include <vector>
 #include <map>
 #include <algorithm>
-#include <iterator>
 #include <type_traits>
 
 #include "list.h"
 
-template <typename> struct is_pair : std::false_type{};
-template <typename T, typename U> struct is_pair<std::pair<T, U>> : std::true_type{};
-
-template<typename ContainerT, typename ValueT = typename ContainerT::value_type>
+template<typename C, typename Enable = void>
 struct printer
-{
-  template<typename GeneratorT>
-    void operator()(GeneratorT generator, std::ostream& stream = std::cout)
   {
-    auto m = ContainerT();
-    std::generate_n(std::inserter(m, m.end()), 10, generator);
+    template<typename G>
+      void operator()(G generator, std::ostream& stream = std::cout)
+      {
+	auto m = C();
+	std::generate_n(std::back_inserter(m), 10, generator);
 
-    stream << '\n';
-    for (const auto& p : m)
-      stream << p.first << " " << p.second << '\n';
-  }
-};
+	stream << '\n';
+	for (const auto& p : m)
+	  stream << p << '\n';
+      }
+  };
 
-template<typename ContainerT>
+template<typename C>
   struct printer<
-    ContainerT
-    , std::pair<typename ContainerT::key_type, typename ContainerT::mapped_type>
+    C
+    , std::enable_if_t<
+	std::is_same<typename C::value_type, std::pair<const typename C::key_type, typename C::mapped_type>>::value
+      >
     >
-{
-  template<typename GeneratorT>
-    void operator()(GeneratorT generator, std::ostream& stream = std::cout)
-    {
-      auto m = ContainerT();
-      std::generate_n(std::inserter(m, m.end()), 10, generator);
+  {
+    template<typename G>
+      void operator()(G generator, std::ostream& stream = std::cout)
+      {
+	auto m = C();
+	std::generate_n(std::inserter(m, m.end()), 10, generator);
 
-      stream << '\n';
-      for (const auto& p : m)
-	stream << p.first << " " << p.second << '\n';
-    }
-};
+	stream << '\n';
+	for (const auto& p : m)
+	  stream << p.first << " " << p.second << '\n';
+      }
+  };
+
+template<typename C>
+  struct printer<
+    C
+    , std::enable_if_t<
+	std::is_same<typename C::key_type, typename C::value_type>::value
+      >
+    >
+  {
+    template<typename G>
+      void operator()(G generator, std::ostream& stream = std::cout)
+      {
+	auto m = C();
+	std::generate_n(std::inserter(m, m.end()), 10, generator);
+
+	stream << '\n';
+	for (const auto& p : m)
+	  stream << p << '\n';
+      }
+  };
 
 int main(int, char **)
 {
   std::ios_base::sync_with_stdio(false);
 
-  auto factorial_generator = [n = 1, i = 0]() mutable
+  auto factorial_pair_generator = [n = 1, i = 0]() mutable
 	{
 	  if (i > 0) n *= i;
 	  return std::make_pair(i++, n);
+	};
+
+  auto factorial_value_generator = [n = 1, i = 0]() mutable
+	{
+	  if (i > 0) n *= i;
+	  i++;
+	  return n;
 	};
 
   // standard container with standard allocator
@@ -61,7 +85,7 @@ int main(int, char **)
       int
       , int
       >
-    >()(factorial_generator);
+    >{}(factorial_pair_generator);
 
   // standard container with humble allocator
   printer<
@@ -71,10 +95,22 @@ int main(int, char **)
       , std::less<int>
       , nonstd::allocator::humble<std::pair<const int, int>, 10>
       >
-    >()(factorial_generator);
+    >{}(factorial_pair_generator);
 
-  nonstd::list<int> nl;
+  //custom container with std::allocator
+  printer<
+    nonstd::list<
+      int
+      >
+    >{}(factorial_value_generator);
 
+  // custom container with humble allocator
+  printer<
+    nonstd::list<
+      int
+      , nonstd::allocator::humble<int, 10>
+      >
+    >{}(factorial_value_generator);
 
   return 0;
 }

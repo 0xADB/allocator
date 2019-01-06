@@ -4,6 +4,7 @@
 
 #include <memory>
 #include <utility>
+#include <initializer_list>
 
 namespace nonstd
 {
@@ -12,9 +13,21 @@ namespace nonstd
     template<typename T>
       struct node : public node_base
       {
+	using value_type = T;
 	using base_type = node_base;
 
 	T _value{};
+
+	node(value_type&& value)
+	  : _value(std::forward<value_type>(value))
+	{}
+
+	node() = default;
+	node(const node&) = default;
+	node& operator=(const node&) = default;
+	node(node&&) = default;
+	node& operator=(node&&) = default;
+	~node(){}
 
 	void swap(node& rhs)
 	{
@@ -77,13 +90,13 @@ namespace nonstd
 	template<typename U>
 	friend bool operator==(const iterator<U>& lhs, const iterator<U>& rhs)
 	{
-	  return (lhs._path == rhs._path);
+	  return (lhs._node == rhs._node);
 	}
 
 	template<typename U>
 	friend bool operator!=(const iterator<U>& lhs, const iterator<U>& rhs)
 	{
-	  return (lhs._path != rhs._path);
+	  return (lhs._node != rhs._node);
 	}
 
 	void swap (iterator& rhs)
@@ -229,6 +242,32 @@ namespace nonstd
 	return *this;
       }
 
+      list(std::initializer_list<T>&& l)
+	: _header()
+      {
+	list_details::node_base **end = &_header._node._next;
+	for (auto value : l)
+	{
+	  *end = create_node(std::forward<value_type>(value));
+	  end = &(*end)->_next;
+	}
+	(*end) = &_header._node;
+      }
+
+      template<typename InputIt>
+	list(InputIt first, InputIt last)
+	  : _header()
+	{
+	  list_details::node_base **end = &_header._node._next;
+	  while (first != last)
+	  {
+	    *end = create_node(std::forward<value_type>(*first));
+	    end = &(*end)->_next;
+	    ++first;
+	  }
+	  (*end) = &_header._node;
+	}
+
       ~list()
       {
 	destroy(_header);
@@ -304,28 +343,46 @@ namespace nonstd
 
       void push_back(value_type&& value)
       {
-	list_details::node_base **end = &_header._node._next;
-	while (*end != &_header._node)
-	  end = &((*end)->_next);
-	*end = create_node(std::forward(value));
+	list_details::node_base **end = _header.get_end_slot();
+	*end = create_node(std::forward<value_type>(value));
 	(*end)->_next = &_header._node;
       }
 
       void pop_back()
       {
-	list_details::node_base **end = &_header._node._next;
-	while (*end != &_header._node && (*end)->_next != &_header._node)
-	  end = &((*end)->_next);
-
-	if ((*end)->_next != &_header._node)
+	list_details::node_base **end = _header.get_last_node_slot();
+	if (!_header.is_end(*end))
 	{
-	  auto node = (*end)->_next;
-	  (*end)->_next = &_header._node;
-	  destroy_node(node);
+	  auto node = *end;
+	  *end = &_header._node;
+	  destroy_node(static_cast<typename node_allocator::pointer>(node));
 	}
       }
 
+      const_reference back() const
+      {
+	list_details::node_base * const *end = _header.get_last_node_slot();
+	return static_cast<typename node_allocator::pointer>(*end)->_value;
+      }
+
+      reference back()
+      {
+	list_details::node_base **end = _header.get_last_node_slot();
+	return static_cast<typename node_allocator::pointer>(*end)->_value;
+      }
+
+      const_reference front() const
+      {
+	return static_cast<typename node_allocator::pointer>(_header._node._next)->_value;
+      }
+
+      reference front()
+      {
+	return static_cast<typename node_allocator::pointer>(_header._node._next)->_value;
+      }
+
     private:
+
       template<typename... Args>
 	auto create_node(Args&&... args)
       {
@@ -337,7 +394,7 @@ namespace nonstd
       void destroy_node(typename node_allocator::pointer node)
       {
 	allocator.destroy(node);
-	allocator.deallocate(node, sizeof(node_type));
+	allocator.deallocate(node, 1);
       }
 
       void destroy(list_details::header& header)
@@ -346,7 +403,7 @@ namespace nonstd
 	while (next != &header._node)
 	{
 	  auto it = next;
-	  next = it->_next;
+	  next = next->_next;
 	  destroy_node(static_cast<typename node_allocator::pointer>(it));
 	}
       }

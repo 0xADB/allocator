@@ -20,7 +20,7 @@ namespace nonstd
       {}
 
       header(const header&) = delete;
-      header(header&& other) 
+      header(header&& other)
 	: _node(std::move(other._node))
 	, _size(other._size)
       {
@@ -61,9 +61,58 @@ namespace nonstd
 	return (!_node._next);
       }
 
+      bool is_end(const node_base * node) const
+      {
+	return (node == &_node);
+      }
+
+      //! returns pointer to the const pointer to the last node
+      node_base * const * get_last_node_slot() const
+      {
+	node_base * const *end = &_node._next;
+	if (!is_end(*end))
+	{
+	  while (!is_end((*end)->_next))
+	    end = &((*end)->_next);
+	}
+	return end;
+      }
+
+      //! returns pointer to the const pointer to the last node
+      node_base ** get_last_node_slot()
+      {
+	node_base **end = &_node._next;
+	if (!is_end(*end))
+	{
+	  while (!is_end((*end)->_next))
+	    end = &((*end)->_next);
+	}
+	return end;
+      }
+
+      //! returns pointer to the pointer to the end
+      node_base * const * get_end_slot() const
+      {
+	node_base *const * end = &_node._next;
+	while (!is_end(*end))
+	  end = &((*end)->_next);
+	return end;
+      }
+
+      //! returns pointer to the pointer to the end
+      node_base **get_end_slot()
+      {
+	node_base **end = &_node._next;
+	while (!is_end(*end))
+	  end = &((*end)->_next);
+	return end;
+      }
+
+
       node_base _node;
       size_type _size = 0;
     }; // header
 
-  } // radix_tree_details
+
+  } // list_details
 } // nonstd
