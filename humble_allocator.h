@@ -212,20 +212,20 @@ namespace allocator
     humble()
       : storage_{block(block_size)}
     {
-      std::cout << __PRETTY_FUNCTION__ << std::endl;
+      // std::cout << __PRETTY_FUNCTION__ << std::endl;
     }
 
     humble(const humble&)
       : storage_{block(block_size)}
     {
-      std::cout << __PRETTY_FUNCTION__ << std::endl;
+      // std::cout << __PRETTY_FUNCTION__ << std::endl;
       //humble::copy_values_from(other);
     }
 
     humble(humble&& other)
       : storage_(std::move(other.storage_))
     {
-      std::cout << __PRETTY_FUNCTION__ << std::endl;
+      // std::cout << __PRETTY_FUNCTION__ << std::endl;
     }
 
     // it is required by the Allocator concept
@@ -233,7 +233,7 @@ namespace allocator
       humble(const humble<U,N>&)
 	: storage_{block(humble<U,N>::block_size)}
       {
-	std::cout << __PRETTY_FUNCTION__ << std::endl;
+	//std::cout << __PRETTY_FUNCTION__ << std::endl;
 	//humble::copy_values_from(other);
       }
 
@@ -247,14 +247,14 @@ namespace allocator
 
     humble& operator=(humble&& other)
     {
-      std::cout << __PRETTY_FUNCTION__ << std::endl;
+      //std::cout << __PRETTY_FUNCTION__ << std::endl;
       std::swap(storage_, other.storage_);
       return *this;
     }
 
     pointer allocate(std::size_t n)
     {
-      std::cout << __PRETTY_FUNCTION__ << std::endl;
+      // std::cout << __PRETTY_FUNCTION__ << std::endl;
       void * p = storage_.front().allocate(n * sizeof(T)); //TODO: choose block instead
       if (unlikely(!p))
 	throw std::bad_alloc(); //TODO: add new block to storage instead
@@ -263,7 +263,7 @@ namespace allocator
 
     void deallocate(T *p, std::size_t n)
     {
-      std::cout << __PRETTY_FUNCTION__ << std::endl;
+      // std::cout << __PRETTY_FUNCTION__ << std::endl;
       if (unlikely(!storage_.front().deallocate(p, n * sizeof(T)))) // TODO: choose block instead
 	throw std::out_of_range("deallocation outside the storage");
     }
@@ -271,13 +271,13 @@ namespace allocator
     template<typename U, typename ...Args>
     void construct(U *p, Args &&...args)
     {
-      std::cout << __PRETTY_FUNCTION__ << std::endl;
+      // std::cout << __PRETTY_FUNCTION__ << std::endl;
       new(p) U(std::forward<Args>(args)...);
     }
 
     void destroy(T *p)
     {
-      std::cout << __PRETTY_FUNCTION__ << std::endl;
+      // std::cout << __PRETTY_FUNCTION__ << std::endl;
       p->~T();
     }
 
