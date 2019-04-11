@@ -79,38 +79,46 @@ int main(int, char **)
 	  return n;
 	};
 
-  // standard container with standard allocator
-  printer<
-    std::map<
-      int
-      , int
-      >
-    >{}(factorial_pair_generator);
+  {
+    // standard container with standard allocator
+    printer<
+      std::map<
+	int
+	, int
+	>
+      >{}(factorial_pair_generator);
+  }
 
-  // standard container with humble allocator
-  printer<
-    std::map<
-      int
-      , int
-      , std::less<int>
-      , nonstd::allocator::humble<std::pair<const int, int>, 10>
-      >
-    >{}(factorial_pair_generator);
+  {
+    // standard container with humble allocator
+    printer<
+      std::map<
+	int
+	, int
+	, std::less<int>
+	, nonstd::legacy_allocator::humble<std::pair<const int, int>, 10>
+	>
+      >{}(factorial_pair_generator);
+  }
 
-  //custom container with std::allocator
-  printer<
-    nonstd::list<
-      int
-      >
-    >{}(factorial_value_generator);
+  {
+    //custom container with std::allocator
+    printer<
+      nonstd::list<
+	int
+	>
+      >{}(factorial_value_generator);
+  }
 
-  // custom container with humble allocator
-  printer<
-    nonstd::list<
-      int
-      , nonstd::allocator::humble<int, 10>
-      >
-    >{}(factorial_value_generator);
+  {
+    // custom container with humble allocator
+    printer<
+      nonstd::list<
+	int
+	, nonstd::legacy_allocator::humble<int, 10>
+	>
+      >{}(factorial_value_generator);
+  }
 
   return 0;
 }
