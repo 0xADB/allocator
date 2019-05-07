@@ -7,6 +7,10 @@
 
 #include "list.h"
 
+#ifdef MEMORY_BLOCK_TRACING
+std::atomic_int nonstd::memory::memory_block::count{};
+#endif
+
 template<typename C, typename Enable = void>
 struct printer
   {

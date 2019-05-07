@@ -5,6 +5,7 @@
 #include <utility>
 #include <mutex>
 #include <atomic>
+#include <iostream>
 
 namespace nonstd
 {
@@ -36,11 +37,19 @@ namespace nonstd
       std::atomic<size_type> _refcnt{1};
       mutable std::mutex _mutex{};
 
+#ifdef MEMORY_BLOCK_TRACING
+      static std::atomic_int count;
+#endif
+
       memory_block(size_type N)
 	: _storage(static_cast<byte_type *>(::operator new(N)))
 	, _storage_end(_storage + N)
 	, _end(_storage)
-      {}
+      {
+#ifdef MEMORY_BLOCK_TRACING
+	std::cout << __PRETTY_FUNCTION__ << ": " << ++count << std::endl;
+#endif
+      }
 
       memory_block(const memory_block& other) = delete;
       memory_block& operator=(const memory_block& other) = delete;
@@ -49,6 +58,9 @@ namespace nonstd
 
       ~memory_block()
       {
+#ifdef MEMORY_BLOCK_TRACING
+	std::cout << __PRETTY_FUNCTION__ << ": " << --count << std::endl;
+#endif
 	std::lock_guard<std::mutex> lock(_mutex);
 	if (_storage)
 	  ::operator delete(const_cast<byte_type *>(_storage));
@@ -88,7 +100,14 @@ namespace nonstd
 	  p = _end;
 	  _end += n;
 	  _stored += n;
+#ifdef MEMORY_BLOCK_TRACING
+	  std::cout << __PRETTY_FUNCTION__ << ": " << n << std::endl;
+#endif
 	}
+#ifdef MEMORY_BLOCK_TRACING
+	else
+	  std::cout << __PRETTY_FUNCTION__ << ": no room" << std::endl;
+#endif
 	return p;
       }
 
@@ -97,9 +116,15 @@ namespace nonstd
 	std::lock_guard<std::mutex> lock(_mutex);
 	if (initialized() && _stored.load() && _storage <= p && p < _end)
 	{
+#ifdef MEMORY_BLOCK_TRACING
+	  std::cout << __PRETTY_FUNCTION__ << ": " << size << std::endl;
+#endif
 	  _stored -= size;
 	  return true;
 	}
+#ifdef MEMORY_BLOCK_TRACING
+	std::cout << __PRETTY_FUNCTION__ << ": wrong pointer or size" << std::endl;
+#endif
 	return false;
       }
     };

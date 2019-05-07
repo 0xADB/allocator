@@ -34,15 +34,6 @@ namespace legacy_allocator
       constexpr static size_t block_size = sizeof(T) * N;
       using block = nonstd::memory::memory_block;
 
-      // forbid allocator copying with the container swapping
-      //using propagate_on_container_copy_assignment = std::false_type;
-
-      // forbid allocator moving with the container
-      //using propagate_on_container_move_assignment = std::false_type;
-
-      // forbid allocator swapping with the container swapping
-      //using propagate_on_container_swap = std::false_type;
-
       template<typename U>
 	struct rebind
 	{
@@ -51,19 +42,13 @@ namespace legacy_allocator
 
       ~humble()
       {
-	if (storage_ && !(--(storage_->_refcnt)))
-	  delete storage_;
+	assert(!storage_);
       }
 
       humble() = default;
 
-      //! Copy-constructor shares the allocated memory block (if any).
-      humble(const humble& other)
-	: storage_{other.storage_}
-      {
-	if (storage_)
-	  storage_->_refcnt++;
-      }
+      //! Copy-constructor does nothing - new region will be allocated on demand
+      humble(const humble&) {}
 
       //! Move-constructor claims the allocated memory block (if any).
       humble(humble&& other)
@@ -72,18 +57,17 @@ namespace legacy_allocator
 	other.storage_ = nullptr;
       }
 
-      //! Copy assignment shares the allocated memory block (if any).
-      humble& operator=(const humble& other)
-      {
-	storage_ = other.storage_;
-	if (storage_)
-	  storage_->_refcnt++;
-	return *this;
-      }
+      //! Copy-constructor does nothing - new region will be allocated on demand
+      template<typename U> humble(const humble<U,N>&) {}
+
+      //! Copy assignment does nothing - new region will be allocated on demand
+      humble& operator=(const humble&) {return *this;}
 
       //! Move assignment claims the allocated memory block (if any).
       humble& operator=(humble&& other)
       {
+	if (storage_ && !(--(storage_->_refcnt)))
+	  delete storage_;
 	storage_ = other.storage_;
 	other.storage_ = nullptr;
 	return *this;
