@@ -11,25 +11,25 @@ include_directories(
   )
 
 add_executable(allocator main.cpp)
-add_executable(test_allocator test_allocator.cpp)
+add_executable(test_legacy_humble_allocator test_legacy_humble_allocator.cpp)
 
 set_target_properties(
   allocator
-  test_allocator
+  test_legacy_humble_allocator
   PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
-    COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra;-Weffc++"
+    COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
   )
 
-set_target_properties(test_allocator PROPERTIES
+set_target_properties(test_legacy_humble_allocator PROPERTIES
   COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
   INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
   INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}
   )
 
 target_link_libraries(
-  test_allocator
+  test_legacy_humble_allocator
   ${Boost_LIBRARIES}
   )
 
@@ -58,4 +58,4 @@ set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Anton Beregovoy <${CPACK_PACKAGE_CONTACT}>"
 include(CPack)
 
 enable_testing()
-add_test(allocator_tests test_allocator)
+add_test(allocator_tests test_legacy_humble_allocator)

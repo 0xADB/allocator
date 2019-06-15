@@ -1,17 +1,11 @@
 #pragma once
 
+#if __cplusplus >= 201103L && __cplusplus <= 201402L
 #include "unlikely.h"
 
 #include <new>
 #include <utility>
 #include <memory>
-#include <cstdlib>
-#include <cassert>
-#include <iostream>
-#include <bitset>
-#include <list>
-#include <algorithm>
-#include <cstring>
 
 #include "memory.h"
 
@@ -19,7 +13,6 @@ namespace nonstd
 {
 namespace legacy_allocator
 {
-#if __cplusplus >= 201103L && __cplusplus <= 201402L
   template<typename T, size_t N>
     struct humble
     {
@@ -40,10 +33,7 @@ namespace legacy_allocator
 	  using other = humble<U, N>;
 	};
 
-      ~humble()
-      {
-	assert(!storage_);
-      }
+      ~humble() {}
 
       humble() = default;
 
@@ -125,8 +115,7 @@ namespace legacy_allocator
 
       block * storage_ = nullptr;
     };
-#endif // __cplusplus <= 201402L
-} // allocator
+} // legacy_allocator
 } //nonstd
 
 //! Allocators for the same memory block and value type are replaceapble
@@ -156,3 +145,5 @@ template <typename T1, size_t N1, typename T2, size_t N2>
 {
   return true;
 }
+
+#endif // __cplusplus <= 201402L
