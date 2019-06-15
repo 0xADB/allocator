@@ -97,10 +97,10 @@ Functions</h2></td></tr>
 <tr class="separator:a82a490a407f4ba9d238535681d782a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23e23b7e9df0d24e0ec390302955b25a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a23e23b7e9df0d24e0ec390302955b25a">find_package</a> (Boost COMPONENTS unit_test_framework REQUIRED) configure_file(version.h.in autoversion.h) include_directories($</td></tr>
 <tr class="separator:a23e23b7e9df0d24e0ec390302955b25a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12ded77610ccde8f87e41637458a4c67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a12ded77610ccde8f87e41637458a4c67">add_executable</a> (allocator main.cpp) add_executable(test_allocator test_allocator.cpp) <a class="el" href="CMakeLists_8txt.html#ac34a0d67879bddbd9ad83ff07765d26a">set_target_properties</a>(allocator test_allocator PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON COMPILE_OPTIONS&quot;-Wpedantic</td></tr>
-<tr class="separator:a12ded77610ccde8f87e41637458a4c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac34a0d67879bddbd9ad83ff07765d26a"><td class="memItemLeft" align="right" valign="top">Weffc&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#ac34a0d67879bddbd9ad83ff07765d26a">set_target_properties</a> (test_allocator PROPERTIES COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}) target_link_libraries(test_allocator $</td></tr>
-<tr class="separator:ac34a0d67879bddbd9ad83ff07765d26a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aaf89876165bc77e966ef29fb46ecb2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a8aaf89876165bc77e966ef29fb46ecb2">add_executable</a> (allocator main.cpp) add_executable(test_alloc11 test_alloc11.cpp) <a class="el" href="CMakeLists_8txt.html#a4dc9ad4ef42b27aa5760d783207e9b17">set_target_properties</a>(allocator test_alloc11 PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON COMPILE_OPTIONS&quot;-Wpedantic</td></tr>
+<tr class="separator:a8aaf89876165bc77e966ef29fb46ecb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dc9ad4ef42b27aa5760d783207e9b17"><td class="memItemLeft" align="right" valign="top">Wextra&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a4dc9ad4ef42b27aa5760d783207e9b17">set_target_properties</a> (test_alloc11 PROPERTIES COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}) target_link_libraries(test_alloc11 $</td></tr>
+<tr class="separator:a4dc9ad4ef42b27aa5760d783207e9b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e6ff3e2f2d133707c714e5e5d971b51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a4e6ff3e2f2d133707c714e5e5d971b51">install</a> (TARGETS allocator RUNTIME DESTINATION bin) <a class="el" href="CMakeLists_8txt.html#ac0b6e02848d5570b4b33494986d9d450">set</a>(CPACK_GENERATOR DEB) <a class="el" href="CMakeLists_8txt.html#ac0b6e02848d5570b4b33494986d9d450">set</a>(CPACK_PACKAGE_VERSION_MAJOR&quot;$</td></tr>
 <tr class="separator:a4e6ff3e2f2d133707c714e5e5d971b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abed8177b0359bb37e78aebe0412cc156"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#abed8177b0359bb37e78aebe0412cc156">set</a> (CPACK_PACKAGE_VERSION_MINOR&quot;${PROJECT_VERSION_MINOR}&quot;) set(CPACK_PACKAGE_VERSION_PATCH&quot;$</td></tr>
@@ -116,11 +116,9 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:ad4f6886266572e51d198a61a6c762ce5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#ad4f6886266572e51d198a61a6c762ce5">Wall</a></td></tr>
 <tr class="separator:ad4f6886266572e51d198a61a6c762ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b2bdaabe7939bd6bf795b37dd3b8787"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a1b2bdaabe7939bd6bf795b37dd3b8787">Wextra</a></td></tr>
-<tr class="separator:a1b2bdaabe7939bd6bf795b37dd3b8787"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a12ded77610ccde8f87e41637458a4c67"></a>
+<a class="anchor" id="a8aaf89876165bc77e966ef29fb46ecb2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -248,14 +246,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac34a0d67879bddbd9ad83ff07765d26a"></a>
+<a class="anchor" id="a4dc9ad4ef42b27aa5760d783207e9b17"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Weffc set_target_properties </td>
+          <td class="memname">Wextra set_target_properties </td>
           <td>(</td>
-          <td class="paramtype">test_allocator PROPERTIES COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}&#160;</td>
+          <td class="paramtype">test_alloc11 PROPERTIES COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -271,18 +269,6 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">Wall</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1b2bdaabe7939bd6bf795b37dd3b8787"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Wextra</td>
         </tr>
       </table>
 </div><div class="memdoc">

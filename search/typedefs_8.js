@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['size_5ftype',['size_type',['../classnonstd_1_1list.html#a8e9e010052a7326773e9ff60a845809f',1,'nonstd::list::size_type()'],['../structnonstd_1_1list__details_1_1header.html#a15b4d67b1a9a390f61287308dd1d2e24',1,'nonstd::list_details::header::size_type()'],['../structnonstd_1_1memory_1_1memory__block.html#a49374b98ffe2ccf829555e0b1bb09772',1,'nonstd::memory::memory_block::size_type()']]]
+  ['reference',['reference',['../structnonstd_1_1list__details_1_1iterator.html#aac3287d9c5a8731a7546b23ab8c62dac',1,'nonstd::list_details::iterator::reference()'],['../structnonstd_1_1list__details_1_1const__iterator.html#a4427152893f48258425a50d3dac74ec7',1,'nonstd::list_details::const_iterator::reference()'],['../classnonstd_1_1list.html#aeb9169db4b505560e0d8ac7b6a84e794',1,'nonstd::list::reference()']]]
 ];
