@@ -7,14 +7,14 @@
 #include <utility>
 #include <memory>
 
-#include "memory.h"
+#include "legacy_memory_block.h"
 
 namespace nonstd
 {
-namespace legacy_allocator
+namespace legacy
 {
   template<typename T, size_t N>
-    struct humble
+    struct humble_allocator
     {
       using value_type = T;
       using pointer = T*;
@@ -25,36 +25,36 @@ namespace legacy_allocator
       using difference_type = std::ptrdiff_t;
 
       constexpr static size_t block_size = sizeof(T) * N;
-      using block = nonstd::memory::memory_block;
+      using block = nonstd::legacy::memory_block;
 
       template<typename U>
 	struct rebind
 	{
-	  using other = humble<U, N>;
+	  using other = humble_allocator<U, N>;
 	};
 
-      ~humble() {}
+      ~humble_allocator() {}
 
-      humble() = default;
+      humble_allocator() = default;
 
       //! Copy-constructor does nothing - new region will be allocated on demand
-      humble(const humble&) {}
+      humble_allocator(const humble_allocator&) {}
 
       //! Move-constructor claims the allocated memory block (if any).
-      humble(humble&& other)
+      humble_allocator(humble_allocator&& other)
 	: storage_(other.storage_)
       {
 	other.storage_ = nullptr;
       }
 
       //! Copy-constructor does nothing - new region will be allocated on demand
-      template<typename U> humble(const humble<U,N>&) {}
+      template<typename U> humble_allocator(const humble_allocator<U,N>&) {}
 
       //! Copy assignment does nothing - new region will be allocated on demand
-      humble& operator=(const humble&) {return *this;}
+      humble_allocator& operator=(const humble_allocator&) {return *this;}
 
       //! Move assignment claims the allocated memory block (if any).
-      humble& operator=(humble&& other)
+      humble_allocator& operator=(humble_allocator&& other)
       {
 	if (storage_ && !(--(storage_->_refcnt)))
 	  delete storage_;
@@ -115,33 +115,33 @@ namespace legacy_allocator
 
       block * storage_ = nullptr;
     };
-} // legacy_allocator
+} // legacy
 } //nonstd
 
 //! Allocators for the same memory block and value type are replaceapble
 template <typename T, size_t N>
-  bool operator==(const nonstd::legacy_allocator::humble<T,N>& lhs, const nonstd::legacy_allocator::humble<T,N>& rhs)
+  bool operator==(const nonstd::legacy::humble_allocator<T,N>& lhs, const nonstd::legacy::humble_allocator<T,N>& rhs)
 {
   return (lhs.storage_ && rhs.storage_ && (lhs.storage_ == rhs.storage_));
 }
 
 //! Allocators for the same memory block and value type are replaceapble
 template <typename T, size_t N>
-  bool operator!=(const nonstd::legacy_allocator::humble<T,N>& lhs, const nonstd::legacy_allocator::humble<T,N>& rhs)
+  bool operator!=(const nonstd::legacy::humble_allocator<T,N>& lhs, const nonstd::legacy::humble_allocator<T,N>& rhs)
 {
   return !(lhs == rhs);
 }
 
 //! Fallback template: in common case allocators aren't replaceapble
 template <typename T1, size_t N1, typename T2, size_t N2>
-  bool operator==(const nonstd::legacy_allocator::humble<T1,N1>&, const nonstd::legacy_allocator::humble<T2,N2>&)
+  bool operator==(const nonstd::legacy::humble_allocator<T1,N1>&, const nonstd::legacy::humble_allocator<T2,N2>&)
 {
   return false;
 }
 
 //! Fallback template: in common case allocators aren't replaceapble
 template <typename T1, size_t N1, typename T2, size_t N2>
-  bool operator!=(const nonstd::legacy_allocator::humble<T1,N1>&, const nonstd::legacy_allocator::humble<T2,N2>&)
+  bool operator!=(const nonstd::legacy::humble_allocator<T1,N1>&, const nonstd::legacy::humble_allocator<T2,N2>&)
 {
   return true;
 }

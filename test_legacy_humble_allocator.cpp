@@ -11,11 +11,11 @@
 #include <boost/test/unit_test.hpp>
 
 #ifdef MEMORY_BLOCK_TRACING
-std::atomic_int nonstd::memory::memory_block::count{};
+std::atomic_int nonstd::legacy::memory_block::count{};
 #endif
 
 template<typename T, size_t N>
-using alloc = nonstd::legacy_allocator::humble<T, N>;
+using alloc = nonstd::legacy::humble_allocator<T, N>;
 
 BOOST_AUTO_TEST_SUITE(test_suite_main)
 

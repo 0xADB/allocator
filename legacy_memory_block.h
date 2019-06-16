@@ -9,7 +9,7 @@
 
 namespace nonstd
 {
-  namespace memory
+  namespace legacy
   {
 
     /**

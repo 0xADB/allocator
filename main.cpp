@@ -8,7 +8,7 @@
 #include "list.h"
 
 #ifdef MEMORY_BLOCK_TRACING
-std::atomic_int nonstd::memory::memory_block::count{};
+std::atomic_int nonstd::legacy::memory_block::count{};
 #endif
 
 template<typename C, typename Enable = void>
@@ -100,7 +100,7 @@ int main(int, char **)
 	int
 	, int
 	, std::less<int>
-	, nonstd::legacy_allocator::humble<std::pair<const int, int>, 10>
+	, nonstd::legacy::humble_allocator<std::pair<const int, int>, 10>
 	>
       >{}(factorial_pair_generator);
   }
@@ -119,7 +119,7 @@ int main(int, char **)
     printer<
       nonstd::list<
 	int
-	, nonstd::legacy_allocator::humble<int, 10>
+	, nonstd::legacy::humble_allocator<int, 10>
 	>
       >{}(factorial_value_generator);
   }

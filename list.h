@@ -210,7 +210,18 @@ namespace nonstd
 
     public:
 
-      list() : _header(){}
+      list() = default;
+
+      explicit list(const Allocator& alloc)
+	: allocator(alloc)
+      {}
+
+      // list(size_type count, const T& value, const Allocator& alloc = Allocator())
+      //   : allocator(alloc)
+      // {
+      //   while(count--)
+      //     push_back(value);
+      // }
 
       list(const list& other)
 	: _header(list_clone(other.root))
@@ -218,6 +229,14 @@ namespace nonstd
 	if (_header.empty())
 	  throw std::bad_alloc(std::string(__PRETTY_FUNCTION__) + ": failed to clone");
       }
+
+      // list(const list& other, const Allocator& alloc)
+      //   : allocator(alloc)
+      // {
+      //   _header._node = list_clone(other.root);
+      //   if (_header.empty())
+      //     throw std::bad_alloc(std::string(__PRETTY_FUNCTION__) + ": failed to clone");
+      // }
 
       list& operator=(const list& other)
       {
@@ -235,6 +254,21 @@ namespace nonstd
 	: _header(std::move(other._header))
       {}
 
+      // list(list&& other, const Allocator& alloc)
+      // {
+      //   if (alloc == other.get_allocator())
+      //   {
+      //     _header = std::move(other._header);
+      //     allocator = alloc;
+      //   }
+      //   else
+      //   {
+      //     allocator = alloc;
+      //     for (auto&& value : other)
+      //       push_back(std::move(value));
+      //   }
+      // }
+
       list& operator=(list&& other)
       {
 	using std::swap;
@@ -243,16 +277,27 @@ namespace nonstd
       }
 
       list(std::initializer_list<T>&& l)
-	: _header()
       {
 	list_details::node_base **end = &_header._node._next;
-	for (auto value : l)
+	for (auto&& value : l)
 	{
 	  *end = create_node(std::forward<value_type>(value));
 	  end = &(*end)->_next;
 	}
 	(*end) = &_header._node;
       }
+
+      // list(std::initializer_list<T>&& l, const Allocator& alloc = Allocator())
+      //   : allocator(alloc)
+      // {
+      //   list_details::node_base **end = &_header._node._next;
+      //   for (auto&& value : l)
+      //   {
+      //     *end = create_node(std::forward<value_type>(value));
+      //     end = &(*end)->_next;
+      //   }
+      //   (*end) = &_header._node;
+      // }
 
       template<typename InputIt>
 	list(InputIt first, InputIt last)
@@ -425,7 +470,7 @@ namespace nonstd
       }
 
     private:
-      header_type _header;
+      header_type _header{};
       node_allocator allocator{};
   };
 }
