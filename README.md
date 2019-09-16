@@ -9,7 +9,6 @@
 - [CppCon 2017: Pablo Halpern “Allocators: The Good Parts”](https://youtu.be/v3dz-AKOVL8?list=PLHTh1InhhwT6bwIpRk0ZbCA0N2p1taxd6)
 - [CppCon 2017: John Lakos “Local ('Arena') Memory Allocators (part 1 of 2)”](https://youtu.be/nZNd5FjSquk?list=PLHTh1InhhwT6bwIpRk0ZbCA0N2p1taxd6)
 - [CppCon 2017: John Lakos “Local ('Arena') Memory Allocators (part 2 of 2)”](https://youtu.be/CFzuFNSpycI?list=PLHTh1InhhwT6bwIpRk0ZbCA0N2p1taxd6)
-- [CppCon 2017: Marshall Clow “Customizing the Standard Containers”](https://youtu.be/zWxSZcpeS8Q)
 ## Related
 - [CppCon 2015: Chandler Carruth "Tuning C++: Benchmarks, and CPUs, and Compilers! Oh My!"](https://youtu.be/nXaxk27zwlk)
 - [CppCon 2015: Bryce Adelstein-Lelbach “Benchmarking C++ Code"](https://youtu.be/zWxSZcpeS8Q)
