@@ -68,7 +68,7 @@ template<typename C>
 
 int main(int, char **)
 {
-  std::ios_base::sync_with_stdio(false);
+  // std::ios_base::sync_with_stdio(false);
 
   auto factorial_pair_generator = [n = 1, i = 0]() mutable
 	{
