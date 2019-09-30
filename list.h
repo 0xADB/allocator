@@ -214,6 +214,13 @@ namespace nonstd
 	(*end)->_next = &_header._node;
       }
 
+      void emplace_back(value_type&& value)
+      {
+	list_details::node_base **end = _header.get_end_slot();
+	*end = create_node(std::forward<value_type>(value));
+	(*end)->_next = &_header._node;
+      }
+
       void pop_back()
       {
 	list_details::node_base **end = _header.get_last_node_slot();
