@@ -42,7 +42,7 @@ namespace nonstd
 #endif
 
       memory_block(size_type N)
-	: _storage(static_cast<byte_type *>(::operator new(N)))
+	: _storage(static_cast<byte_type *>(malloc(N)))
 	, _storage_end(_storage + N)
 	, _end(_storage)
       {
@@ -63,7 +63,7 @@ namespace nonstd
 #endif
 	std::lock_guard<std::mutex> lock(_mutex);
 	if (_storage)
-	  ::operator delete(const_cast<byte_type *>(_storage));
+	  free(const_cast<byte_type *>(_storage));
       }
 
       bool is_pointed_by(const void * p, size_type size = 0) const
@@ -101,12 +101,14 @@ namespace nonstd
 	  _end += n;
 	  _stored += n;
 #ifdef MEMORY_BLOCK_TRACING
-	  std::cout << __PRETTY_FUNCTION__ << ": " << n << std::endl;
+	  std::cout << __PRETTY_FUNCTION__ << ": allocated: " << n << std::endl;
 #endif
 	}
 #ifdef MEMORY_BLOCK_TRACING
 	else
+	{
 	  std::cout << __PRETTY_FUNCTION__ << ": no room" << std::endl;
+	}
 #endif
 	return p;
       }
