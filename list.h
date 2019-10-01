@@ -6,6 +6,8 @@
 #include <utility>
 #include <initializer_list>
 
+#include <cassert>
+
 namespace nonstd
 {
   template <
@@ -45,10 +47,11 @@ namespace nonstd
       // }
 
       list(const list& other)
-	: _header(list_clone(other.root))
+	: _allocator()
+	, _header(clone(other._header))
       {
-	if (_header.empty())
-	  throw std::bad_alloc(std::string(__PRETTY_FUNCTION__) + ": failed to clone");
+	if (_header.empty() && !other._header.empty())
+	  throw std::bad_alloc();
       }
 
       // list(const list& other, const allocator_type& alloc)
@@ -56,7 +59,7 @@ namespace nonstd
       // {
       //   _header._node = list_clone(other.root);
       //   if (_header.empty())
-      //     throw std::bad_alloc(std::string(__PRETTY_FUNCTION__) + ": failed to clone");
+      //     throw std::bad_alloc();
       // }
 
       list& operator=(const list& other)
@@ -64,16 +67,24 @@ namespace nonstd
 	if (&other != this)
 	{
 	  destroy(_header);
-	  _header = clone(other._header);
-	  if (_header.empty())
-	    throw std::bad_alloc(std::string(__PRETTY_FUNCTION__) + ": failed to clone");
+	  _header._node._next = clone(other._header);
+	  if (_header.empty() && !other._header.empty())
+	    throw std::bad_alloc();
 	}
 	return *this;
       }
 
       list(list&& other)
-	: _header(std::move(other._header))
-      {}
+      {
+	if (_allocator == other._allocator)
+	{
+	  _header = std::move(other._header);
+	}
+	else
+	{
+	  operator=(other);
+	}
+      }
 
       // list(list&& other, const allocator_type& alloc)
       // {
@@ -94,18 +105,21 @@ namespace nonstd
       {
 	using std::swap;
 	swap(other._header, _header);
+
+	if (_allocator != other._allocator)
+	  swap(_allocator, other._allocator);
+
 	return *this;
       }
 
-      list(std::initializer_list<T>&& l)
+      list(std::initializer_list<value_type> l)
       {
 	list_details::node_base **end = &_header._node._next;
-	for (auto&& value : l)
+	for (const value_type& value : l)
 	{
-	  *end = create_node(std::forward<value_type>(value));
-	  end = &(*end)->_next;
+	  *end = create_node(value);
+	  end = &((*end)->_next);
 	}
-	(*end) = &_header._node;
       }
 
       // list(std::initializer_list<T>&& l, const allocator_type& alloc = allocator_type())
@@ -122,16 +136,14 @@ namespace nonstd
 
       template<typename InputIt>
 	list(InputIt first, InputIt last)
-	  : _header()
 	{
 	  list_details::node_base **end = &_header._node._next;
 	  while (first != last)
 	  {
 	    *end = create_node(std::forward<value_type>(*first));
-	    end = &(*end)->_next;
+	    end = &((*end)->_next);
 	    ++first;
 	  }
-	  (*end) = &_header._node;
 	}
 
       ~list()
@@ -157,7 +169,7 @@ namespace nonstd
 	return std::equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
       }
 
-      friend bool operator!= (const list& lhs, const list& rhs)
+      friend bool operator!=(const list& lhs, const list& rhs)
       {
 	return !(lhs == rhs);
       }
@@ -211,14 +223,13 @@ namespace nonstd
       {
 	list_details::node_base **end = _header.get_end_slot();
 	*end = create_node(std::forward<value_type>(value));
-	(*end)->_next = &_header._node;
       }
 
-      void emplace_back(value_type&& value)
+      template<typename... Args>
+      void emplace_back(Args&&... args)
       {
 	list_details::node_base **end = _header.get_end_slot();
-	*end = create_node(std::forward<value_type>(value));
-	(*end)->_next = &_header._node;
+	*end = create_node(std::forward<Args>(args)...);
       }
 
       void pop_back()
@@ -246,7 +257,7 @@ namespace nonstd
 
       const_reference front() const
       {
-	return static_cast<typename allocator_type::pointer>(_header._node._next)->_value;
+	return static_cast<const typename allocator_type::pointer>(_header._node._next)->_value;
       }
 
       reference front()
@@ -261,6 +272,7 @@ namespace nonstd
       {
 	typename allocator_type::pointer node = _allocator.allocate(1);
 	_allocator.construct(node, std::forward<Args>(args)...);
+	node->_next = &_header._node;
 	return node;
       }
 
@@ -281,24 +293,24 @@ namespace nonstd
 	}
       }
 
-      auto clone (const typename allocator_type::pointer other_head)
+      auto clone (const header_type& other_head)
       {
 	list_details::header header;
-	list_details::node_base ** it = &header._node._next;
-	
-	for (auto other_it = other_head
-	    ; other_it != nullptr
-	    ; it = &((*it)->_next)
-	    , other_it = other_it->_next
-	    )
+	list_details::node_base ** slot_it = &header._node._next;
+	typename allocator_type::const_pointer other_it =
+		static_cast<typename allocator_type::const_pointer>(other_head._node._next);
+
+	while (other_it != &other_head._node)
 	{
-	  *it = create_node(other_it->_value);
+	  *slot_it = create_node(other_it->_value);
+	  slot_it = &((*slot_it)->_next);
+	  other_it = static_cast<typename allocator_type::const_pointer>(other_it->_next);
 	}
 	return header._node._next;
       }
 
     private:
-      header_type _header{};
       allocator_type _allocator{};
+      header_type _header{};
   };
 }
