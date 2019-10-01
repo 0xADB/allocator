@@ -14,7 +14,8 @@
 #if __cplusplus > 201402L
 
 #ifdef MEMORY_BLOCK_TRACING
-std::atomic_int nonstd::pmr::memory_block::count{};
+template<>
+std::atomic_int nonstd::pmr::memory_block<10>::count{};
 #endif
 
 #endif // __cplusplus > 201402L
