@@ -107,7 +107,7 @@ namespace nonstd
 #ifdef MEMORY_BLOCK_TRACING
 	else
 	{
-	  std::cout << __PRETTY_FUNCTION__ << ": no room" << std::endl;
+	  std::cerr << __PRETTY_FUNCTION__ << ": no room for: " << n << std::endl;
 	}
 #endif
 	return p;

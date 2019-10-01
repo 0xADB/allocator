@@ -96,11 +96,16 @@ namespace nonstd
 	      _end += bytes;
 	      _stored += bytes;
 #ifdef MEMORY_BLOCK_TRACING
-	      std::cout << __PRETTY_FUNCTION__ << ": " << n << std::endl;
+	      std::cout << __PRETTY_FUNCTION__ << ": allocated: " << bytes << std::endl;
 #endif
 	    }
-	    else
+	    else 
+	    {
+#ifdef MEMORY_BLOCK_TRACING
+	      std::cerr << __PRETTY_FUNCTION__ << ": no room for: " << bytes << std::endl;
+#endif
 	      throw std::bad_alloc();
+	    }
 	    return p;
 	  }
 
