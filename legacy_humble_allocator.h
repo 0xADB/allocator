@@ -3,7 +3,6 @@
 #if __cplusplus >= 201103L && __cplusplus <= 201402L
 #include "unlikely.h"
 
-#include <new>
 #include <utility>
 #include <memory>
 
@@ -71,6 +70,7 @@ namespace legacy
 	void * p = storage_->allocate(n * sizeof(T));
 	if (unlikely(!p))
 	  throw std::bad_alloc();
+
 	return reinterpret_cast<T *>(p);
       }
 
@@ -90,8 +90,8 @@ namespace legacy
 	}
       }
 
-      template<typename U, typename ...Args>
-      void construct(U *p, Args &&...args)
+      template<typename U, typename... Args>
+      void construct(U *p, Args&&... args)
       {
 	new(p) U(std::forward<Args>(args)...);
       }
