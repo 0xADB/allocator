@@ -128,11 +128,15 @@ Public Types</h2></td></tr>
 <tr class="separator:a7531f3edf183654377f0bc0395a9ba6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fe7fbc8182f0dad07f6d786c295fd7c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a2fe7fbc8182f0dad07f6d786c295fd7c">const_iterator</a> = <a class="el" href="structnonstd_1_1list__details_1_1const__iterator.html">list_details::const_iterator</a>&lt; T &gt;</td></tr>
 <tr class="separator:a2fe7fbc8182f0dad07f6d786c295fd7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8191735575de869cd2ae09d831833b9c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a8191735575de869cd2ae09d831833b9c">allocator_type</a> = typename Allocator::template rebind&lt; <a class="el" href="classnonstd_1_1list.html#a7cd0d7f8347bf367f8419963fff372aa">node_type</a> &gt;::other</td></tr>
+<tr class="separator:a8191735575de869cd2ae09d831833b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aecd5e9bb9904b326215abafbddbf0423"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#aecd5e9bb9904b326215abafbddbf0423">list</a> ()</td></tr>
-<tr class="separator:aecd5e9bb9904b326215abafbddbf0423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1476c336de581b4d8063b28d87cfbcab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a1476c336de581b4d8063b28d87cfbcab">list</a> ()=default</td></tr>
+<tr class="separator:a1476c336de581b4d8063b28d87cfbcab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a40b3b4454bc2bc9464d4a0718602da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a3a40b3b4454bc2bc9464d4a0718602da">list</a> (const <a class="el" href="classnonstd_1_1list.html#a8191735575de869cd2ae09d831833b9c">allocator_type</a> &amp;<a class="el" href="test__legacy__humble__allocator_8cpp.html#a9a39a037546d6b74ecbce366c4971a72">alloc</a>)</td></tr>
+<tr class="separator:a3a40b3b4454bc2bc9464d4a0718602da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b82c171f2cb5d620ef8dd2c84c41d98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a5b82c171f2cb5d620ef8dd2c84c41d98">list</a> (const <a class="el" href="classnonstd_1_1list.html">list</a> &amp;other)</td></tr>
 <tr class="separator:a5b82c171f2cb5d620ef8dd2c84c41d98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38c3c9b7e0ec57f082e1b9e6cc4b9cec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnonstd_1_1list.html">list</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a38c3c9b7e0ec57f082e1b9e6cc4b9cec">operator=</a> (const <a class="el" href="classnonstd_1_1list.html">list</a> &amp;other)</td></tr>
@@ -141,8 +145,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae9e3b4864e39f404e5a600aecb26ad85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2ba27c56202ca03bd54847cc6c83879"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnonstd_1_1list.html">list</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#aa2ba27c56202ca03bd54847cc6c83879">operator=</a> (<a class="el" href="classnonstd_1_1list.html">list</a> &amp;&amp;other)</td></tr>
 <tr class="separator:aa2ba27c56202ca03bd54847cc6c83879"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeac310281ba984526c2325dab453a466"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#aeac310281ba984526c2325dab453a466">list</a> (std::initializer_list&lt; T &gt; &amp;&amp;l)</td></tr>
-<tr class="separator:aeac310281ba984526c2325dab453a466"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec0678ed1b2ad2b600e5b616fb3cb7e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#aec0678ed1b2ad2b600e5b616fb3cb7e0">list</a> (std::initializer_list&lt; <a class="el" href="classnonstd_1_1list.html#ad8e529b359a533303e98ded332c8e10f">value_type</a> &gt; l)</td></tr>
+<tr class="separator:aec0678ed1b2ad2b600e5b616fb3cb7e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4928393e6f53fcb8572cebb73d9e12d"><td class="memTemplParams" colspan="2">template&lt;typename InputIt &gt; </td></tr>
 <tr class="memitem:ae4928393e6f53fcb8572cebb73d9e12d"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#ae4928393e6f53fcb8572cebb73d9e12d">list</a> (InputIt first, InputIt last)</td></tr>
 <tr class="separator:ae4928393e6f53fcb8572cebb73d9e12d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,6 +174,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a18807fce4907ee6714cb5d815573850f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e0160c5eca40fefb227cdcf9f17401d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a9e0160c5eca40fefb227cdcf9f17401d">push_back</a> (<a class="el" href="classnonstd_1_1list.html#ad8e529b359a533303e98ded332c8e10f">value_type</a> &amp;&amp;value)</td></tr>
 <tr class="separator:a9e0160c5eca40fefb227cdcf9f17401d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1daf1126d5cca4813a33b4f3b2ab11"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a1e1daf1126d5cca4813a33b4f3b2ab11"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a1e1daf1126d5cca4813a33b4f3b2ab11">emplace_back</a> (Args &amp;&amp;...args)</td></tr>
+<tr class="separator:a1e1daf1126d5cca4813a33b4f3b2ab11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a8d6781f037fc4a5bfe1e55ee6af50c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a3a8d6781f037fc4a5bfe1e55ee6af50c">pop_back</a> ()</td></tr>
 <tr class="separator:a3a8d6781f037fc4a5bfe1e55ee6af50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc48fc35029460eae3b92c58f9ac13f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnonstd_1_1list.html#aea1263a16ac42e63a9a623ed9d82d48f">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#acc48fc35029460eae3b92c58f9ac13f9">back</a> () const </td></tr>
@@ -189,27 +196,25 @@ Private Types</h2></td></tr>
 <tr class="separator:a43b1886c7692f5a1a060882c0ba2c492"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65e33f2625c3c829c5061f5769f6d237"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a65e33f2625c3c829c5061f5769f6d237">header_type</a> = <a class="el" href="structnonstd_1_1list__details_1_1header.html">list_details::header</a></td></tr>
 <tr class="separator:a65e33f2625c3c829c5061f5769f6d237"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afce570b7d8f46b6af919d3fb41183f5a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#afce570b7d8f46b6af919d3fb41183f5a">node_allocator</a> = typename Allocator::template rebind&lt; <a class="el" href="classnonstd_1_1list.html#a7cd0d7f8347bf367f8419963fff372aa">node_type</a> &gt;::other</td></tr>
-<tr class="separator:afce570b7d8f46b6af919d3fb41183f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:aef21212dbc5c9762d2b99656800654ec"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:aef21212dbc5c9762d2b99656800654ec"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#aef21212dbc5c9762d2b99656800654ec">create_node</a> (Args &amp;&amp;...args)</td></tr>
 <tr class="separator:aef21212dbc5c9762d2b99656800654ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32be91e78d83f03f5ca1ca6a46bd78e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a32be91e78d83f03f5ca1ca6a46bd78e5">destroy_node</a> (typename node_allocator::pointer node)</td></tr>
-<tr class="separator:a32be91e78d83f03f5ca1ca6a46bd78e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bea8fd82164460c94176533d38b7271"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a1bea8fd82164460c94176533d38b7271">destroy_node</a> (typename allocator_type::pointer node)</td></tr>
+<tr class="separator:a1bea8fd82164460c94176533d38b7271"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac789bfcd16f8e5cbdbfd7b619d8b1f7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#ac789bfcd16f8e5cbdbfd7b619d8b1f7c">destroy</a> (<a class="el" href="structnonstd_1_1list__details_1_1header.html">list_details::header</a> &amp;header)</td></tr>
 <tr class="separator:ac789bfcd16f8e5cbdbfd7b619d8b1f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99509e08d78119a9170733d2a6f24d41"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a99509e08d78119a9170733d2a6f24d41">clone</a> (const typename node_allocator::pointer other_head)</td></tr>
-<tr class="separator:a99509e08d78119a9170733d2a6f24d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4637d1a37605ec2f49f9276a6f3dcf9a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#a4637d1a37605ec2f49f9276a6f3dcf9a">clone</a> (const <a class="el" href="classnonstd_1_1list.html#a65e33f2625c3c829c5061f5769f6d237">header_type</a> &amp;other_head)</td></tr>
+<tr class="separator:a4637d1a37605ec2f49f9276a6f3dcf9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:aa520781bf9595be662aef0ec2bb5f66d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnonstd_1_1list.html#a65e33f2625c3c829c5061f5769f6d237">header_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#aa520781bf9595be662aef0ec2bb5f66d">_header</a></td></tr>
+<tr class="memitem:ac6d01b4e7f625fa25ae0e52695d65e1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnonstd_1_1list.html#a8191735575de869cd2ae09d831833b9c">allocator_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#ac6d01b4e7f625fa25ae0e52695d65e1a">_allocator</a> {}</td></tr>
+<tr class="separator:ac6d01b4e7f625fa25ae0e52695d65e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa520781bf9595be662aef0ec2bb5f66d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnonstd_1_1list.html#a65e33f2625c3c829c5061f5769f6d237">header_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#aa520781bf9595be662aef0ec2bb5f66d">_header</a> {}</td></tr>
 <tr class="separator:aa520781bf9595be662aef0ec2bb5f66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5d6b6e6e30301448bf10ec327ef5cb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnonstd_1_1list.html#afce570b7d8f46b6af919d3fb41183f5a">node_allocator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnonstd_1_1list.html#ab5d6b6e6e30301448bf10ec327ef5cb8">allocator</a> {}</td></tr>
-<tr class="separator:ab5d6b6e6e30301448bf10ec327ef5cb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -221,6 +226,20 @@ Friends</h2></td></tr>
 <tr class="separator:ae31168758d84aaaad62ef080ccb91bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="a8191735575de869cd2ae09d831833b9c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::<a class="el" href="classnonstd_1_1list.html#a8191735575de869cd2ae09d831833b9c">allocator_type</a> =  typename Allocator::template rebind&lt;<a class="el" href="classnonstd_1_1list.html#a7cd0d7f8347bf367f8419963fff372aa">node_type</a>&gt;::other</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a2fe7fbc8182f0dad07f6d786c295fd7c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -295,28 +314,6 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
           <td class="memname">using <a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::<a class="el" href="classnonstd_1_1list.html#a7531f3edf183654377f0bc0395a9ba6d">iterator</a> =  <a class="el" href="structnonstd_1_1list__details_1_1iterator.html">list_details::iterator</a>&lt;T&gt;</td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="afce570b7d8f46b6af919d3fb41183f5a"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::<a class="el" href="classnonstd_1_1list.html#afce570b7d8f46b6af919d3fb41183f5a">node_allocator</a> =  typename Allocator::template rebind&lt;<a class="el" href="classnonstd_1_1list.html#a7cd0d7f8347bf367f8419963fff372aa">node_type</a>&gt;::other</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -408,7 +405,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aecd5e9bb9904b326215abafbddbf0423"></a>
+<a class="anchor" id="a1476c336de581b4d8063b28d87cfbcab"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -426,7 +423,33 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3a40b3b4454bc2bc9464d4a0718602da"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::<a class="el" href="classnonstd_1_1list.html">list</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnonstd_1_1list.html#a8191735575de869cd2ae09d831833b9c">allocator_type</a> &amp;&#160;</td>
+          <td class="paramname"><em>alloc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -485,7 +508,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
 
 </div>
 </div>
-<a class="anchor" id="aeac310281ba984526c2325dab453a466"></a>
+<a class="anchor" id="aec0678ed1b2ad2b600e5b616fb3cb7e0"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -497,7 +520,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
         <tr>
           <td class="memname"><a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::<a class="el" href="classnonstd_1_1list.html">list</a> </td>
           <td>(</td>
-          <td class="paramtype">std::initializer_list&lt; T &gt; &amp;&amp;&#160;</td>
+          <td class="paramtype">std::initializer_list&lt; <a class="el" href="classnonstd_1_1list.html#ad8e529b359a533303e98ded332c8e10f">value_type</a> &gt;&#160;</td>
           <td class="paramname"><em>l</em></td><td>)</td>
           <td></td>
         </tr>
@@ -725,7 +748,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
 
 </div>
 </div>
-<a class="anchor" id="a99509e08d78119a9170733d2a6f24d41"></a>
+<a class="anchor" id="a4637d1a37605ec2f49f9276a6f3dcf9a"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -737,7 +760,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
         <tr>
           <td class="memname">auto <a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::clone </td>
           <td>(</td>
-          <td class="paramtype">const typename node_allocator::pointer&#160;</td>
+          <td class="paramtype">const <a class="el" href="classnonstd_1_1list.html#a65e33f2625c3c829c5061f5769f6d237">header_type</a> &amp;&#160;</td>
           <td class="paramname"><em>other_head</em></td><td>)</td>
           <td></td>
         </tr>
@@ -805,7 +828,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
 
 </div>
 </div>
-<a class="anchor" id="a32be91e78d83f03f5ca1ca6a46bd78e5"></a>
+<a class="anchor" id="a1bea8fd82164460c94176533d38b7271"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -817,7 +840,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
         <tr>
           <td class="memname">void <a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::destroy_node </td>
           <td>(</td>
-          <td class="paramtype">typename node_allocator::pointer&#160;</td>
+          <td class="paramtype">typename allocator_type::pointer&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
           <td></td>
         </tr>
@@ -825,6 +848,34 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1e1daf1126d5cca4813a33b4f3b2ab11"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::emplace_back </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1245,7 +1296,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
 </div>
 </div>
 <h2 class="groupheader">Field Documentation</h2>
-<a class="anchor" id="aa520781bf9595be662aef0ec2bb5f66d"></a>
+<a class="anchor" id="ac6d01b4e7f625fa25ae0e52695d65e1a"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1255,7 +1306,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classnonstd_1_1list.html#a65e33f2625c3c829c5061f5769f6d237">header_type</a> <a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::_header</td>
+          <td class="memname"><a class="el" href="classnonstd_1_1list.html#a8191735575de869cd2ae09d831833b9c">allocator_type</a> <a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::_allocator {}</td>
         </tr>
       </table>
   </td>
@@ -1267,7 +1318,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
 
 </div>
 </div>
-<a class="anchor" id="ab5d6b6e6e30301448bf10ec327ef5cb8"></a>
+<a class="anchor" id="aa520781bf9595be662aef0ec2bb5f66d"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1277,7 +1328,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classnonstd_1_1list.html#afce570b7d8f46b6af919d3fb41183f5a">node_allocator</a> <a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::allocator {}</td>
+          <td class="memname"><a class="el" href="classnonstd_1_1list.html#a65e33f2625c3c829c5061f5769f6d237">header_type</a> <a class="el" href="classnonstd_1_1list.html">nonstd::list</a>&lt; T, Allocator &gt;::_header {}</td>
         </tr>
       </table>
   </td>

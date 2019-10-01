@@ -97,20 +97,10 @@ Functions</h2></td></tr>
 <tr class="separator:a82a490a407f4ba9d238535681d782a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23e23b7e9df0d24e0ec390302955b25a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a23e23b7e9df0d24e0ec390302955b25a">find_package</a> (Boost COMPONENTS unit_test_framework REQUIRED) configure_file(version.h.in autoversion.h) include_directories($</td></tr>
 <tr class="separator:a23e23b7e9df0d24e0ec390302955b25a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5448d92eacc2b9062df993735b1c3b95"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a5448d92eacc2b9062df993735b1c3b95">add_executable</a> (allocator main.cpp) add_executable(test_legacy_humble_allocator test_legacy_humble_allocator.cpp) <a class="el" href="CMakeLists_8txt.html#ae3bd34dbf031cbc0b7e905cc35e8d45e">set_target_properties</a>(allocator test_legacy_humble_allocator PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON COMPILE_OPTIONS&quot;-Wpedantic</td></tr>
-<tr class="separator:a5448d92eacc2b9062df993735b1c3b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3bd34dbf031cbc0b7e905cc35e8d45e"><td class="memItemLeft" align="right" valign="top">Wextra&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#ae3bd34dbf031cbc0b7e905cc35e8d45e">set_target_properties</a> (test_legacy_humble_allocator PROPERTIES COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}) target_link_libraries(test_legacy_humble_allocator $</td></tr>
-<tr class="separator:ae3bd34dbf031cbc0b7e905cc35e8d45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e6ff3e2f2d133707c714e5e5d971b51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a4e6ff3e2f2d133707c714e5e5d971b51">install</a> (TARGETS allocator RUNTIME DESTINATION bin) <a class="el" href="CMakeLists_8txt.html#ac0b6e02848d5570b4b33494986d9d450">set</a>(CPACK_GENERATOR DEB) <a class="el" href="CMakeLists_8txt.html#ac0b6e02848d5570b4b33494986d9d450">set</a>(CPACK_PACKAGE_VERSION_MAJOR&quot;$</td></tr>
-<tr class="separator:a4e6ff3e2f2d133707c714e5e5d971b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abed8177b0359bb37e78aebe0412cc156"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#abed8177b0359bb37e78aebe0412cc156">set</a> (CPACK_PACKAGE_VERSION_MINOR&quot;${PROJECT_VERSION_MINOR}&quot;) set(CPACK_PACKAGE_VERSION_PATCH&quot;$</td></tr>
-<tr class="separator:abed8177b0359bb37e78aebe0412cc156"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11838c690abd926c32ff40e1acc2a96e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a11838c690abd926c32ff40e1acc2a96e">set</a> (CPACK_PACKAGE_VERSION&quot;${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}&quot;) set(CPACK_PACKAGE_NAME&quot;$</td></tr>
-<tr class="separator:a11838c690abd926c32ff40e1acc2a96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4065bca36a1ded6adcff23fab03294fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a4065bca36a1ded6adcff23fab03294fb">set</a> (CPACK_PACKAGE_CONTACT&quot;ad.beregovoy@gmail.com&quot;) set(CPACK_PACKAGE_DESCRIPTION_SUMMARY&quot;A custom allocator examples&quot;) set(CPACK_PACKAGE_DESCRIPTION&quot;Quick and dirty example of custom allocators&quot;) set(CPACK_RESOURCE_FILE_README&quot;$</td></tr>
-<tr class="separator:a4065bca36a1ded6adcff23fab03294fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0b6e02848d5570b4b33494986d9d450"><td class="memItemLeft" align="right" valign="top">README md&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#ac0b6e02848d5570b4b33494986d9d450">set</a> (CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON) set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE amd64) set(CPACK_DEBIAN_PACKAGE_SECTION&quot;Development&quot;) set(CPACK_DEBIAN_PACKAGE_MAINTAINER&quot;Anton Beregovoy &lt;$</td></tr>
-<tr class="separator:ac0b6e02848d5570b4b33494986d9d450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ba3fc4239b9cf359bdc66ff13cfacdf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a7ba3fc4239b9cf359bdc66ff13cfacdf">add_executable</a> (allocator main.cpp) add_executable(test_legacy_humble_allocator test_legacy_humble_allocator.cpp) add_executable(test_pmr_humble_allocator test_pmr_humble_allocator.cpp) <a class="el" href="CMakeLists_8txt.html#a71c5e008b4a275486324c1085604dc56">set_target_properties</a>(allocator test_legacy_humble_allocator PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON COMPILE_OPTIONS&quot;-Wpedantic</td></tr>
+<tr class="separator:a7ba3fc4239b9cf359bdc66ff13cfacdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71c5e008b4a275486324c1085604dc56"><td class="memItemLeft" align="right" valign="top">Wextra&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CMakeLists_8txt.html#a71c5e008b4a275486324c1085604dc56">set_target_properties</a> (test_pmr_humble_allocator PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON COMPILE_OPTIONS&quot;-Wpedantic;-<a class="el" href="CMakeLists_8txt.html#ad4f6886266572e51d198a61a6c762ce5">Wall</a>;-Wextra&quot;) set_target_properties(test_legacy_humble_allocator PROPERTIES COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK INCLUDE_DIRECTORIES $</td></tr>
+<tr class="separator:a71c5e008b4a275486324c1085604dc56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -118,7 +108,7 @@ Variables</h2></td></tr>
 <tr class="separator:ad4f6886266572e51d198a61a6c762ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a5448d92eacc2b9062df993735b1c3b95"></a>
+<a class="anchor" id="a7ba3fc4239b9cf359bdc66ff13cfacdf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -166,94 +156,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4e6ff3e2f2d133707c714e5e5d971b51"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">install </td>
-          <td>(</td>
-          <td class="paramtype">TARGETS allocator RUNTIME DESTINATION&#160;</td>
-          <td class="paramname"><em>bin</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="abed8177b0359bb37e78aebe0412cc156"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">set </td>
-          <td>(</td>
-          <td class="paramtype">CPACK_PACKAGE_VERSION_MINOR&quot;${PROJECT_VERSION_MINOR}&quot;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a11838c690abd926c32ff40e1acc2a96e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">set </td>
-          <td>(</td>
-          <td class="paramtype">CPACK_PACKAGE_VERSION&quot;${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}&quot;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a4065bca36a1ded6adcff23fab03294fb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">set </td>
-          <td>(</td>
-          <td class="paramtype">CPACK_PACKAGE_CONTACT&quot;ad.beregovoy@gmail.com&quot;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ac0b6e02848d5570b4b33494986d9d450"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">README md set </td>
-          <td>(</td>
-          <td class="paramtype">CPACK_DEBIAN_PACKAGE_SHLIBDEPS&#160;</td>
-          <td class="paramname"><em>ON</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae3bd34dbf031cbc0b7e905cc35e8d45e"></a>
+<a class="anchor" id="a71c5e008b4a275486324c1085604dc56"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Wextra set_target_properties </td>
           <td>(</td>
-          <td class="paramtype">test_legacy_humble_allocator PROPERTIES COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}&#160;</td>
+          <td class="paramtype">test_pmr_humble_allocator PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON COMPILE_OPTIONS&quot;-Wpedantic;-<a class="el" href="CMakeLists_8txt.html#ad4f6886266572e51d198a61a6c762ce5">Wall</a>;-Wextra&quot;&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
