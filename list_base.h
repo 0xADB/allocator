@@ -20,6 +20,16 @@ namespace nonstd
 	: _node{&_node}
       {}
 
+      header(node_base * node) // N.B.: cloned node_base only
+	: _node{node}
+      {
+	const node_base * n = _node._next;
+	while (n != &_node) {
+	  ++_size;
+	  n = n->_next;
+	}
+      }
+
       header(const header&) = delete;
       header(header&& other)
 	: _node(std::move(other._node))
@@ -109,7 +119,6 @@ namespace nonstd
 	return end;
       }
 
-
       node_base _node;
       size_type _size = 0;
     }; // header
@@ -122,9 +131,18 @@ namespace nonstd
 
       T _value{};
 
+      node(const value_type& value)
+	: _value(value)
+      {}
+
       node(value_type&& value)
 	: _value(std::forward<value_type>(value))
       {}
+
+      template<typename... Args>
+	node(Args&&... args)
+	  : _value(std::forward<Args>(args)...)
+	{}
 
       node() = default;
       node(const node&) = default;
@@ -245,7 +263,7 @@ namespace nonstd
 
 	pointer operator->() const
 	{
-	  return &(static_cast<node_type*>(_node))->_value;
+	  return &(static_cast<const node_type*>(_node))->_value;
 	}
 
 	const_iterator& operator++()
