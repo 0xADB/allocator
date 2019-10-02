@@ -75,15 +75,9 @@ namespace nonstd
       }
 
       list(list&& other)
+	: _allocator(other.get_allocator())
       {
-	if (_allocator == other._allocator)
-	{
-	  _header = std::move(other._header);
-	}
-	else
-	{
-	  operator=(other);
-	}
+	operator=(std::move(other));
       }
 
       // list(list&& other, const allocator_type& alloc)
@@ -103,11 +97,10 @@ namespace nonstd
 
       list& operator=(list&& other)
       {
-	using std::swap;
-	swap(other._header, _header);
-
-	if (_allocator != other._allocator)
-	  swap(_allocator, other._allocator);
+	if (_allocator == other._allocator)
+	  this->swap(other);
+	else
+	  operator=(other);
 
 	return *this;
       }
@@ -151,6 +144,11 @@ namespace nonstd
 	destroy(_header);
       }
 
+      Allocator get_allocator() const
+      {
+	return _allocator;
+      }
+
       void swap(list& other)
       {
 	using std::swap;
@@ -161,7 +159,6 @@ namespace nonstd
       {
 	using std::swap;
 	swap(lhs._header, rhs._header);
-	swap(lhs._size, rhs._size);
       }
 
       friend bool operator==(const list& lhs, const list& rhs)

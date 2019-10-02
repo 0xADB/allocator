@@ -5,6 +5,7 @@
 
 #include <utility>
 #include <memory>
+#include <cassert>
 
 #include "legacy_memory_block.h"
 
@@ -32,12 +33,20 @@ namespace legacy
 	  using other = humble_allocator<U, N>;
 	};
 
-      ~humble_allocator() {}
+      ~humble_allocator()
+      {
+	if (storage_ && !(--(storage_->_refcnt)))
+	  delete storage_;
+      }
 
       humble_allocator() = default;
 
-      //! Copy-constructor does nothing - new region will be allocated on demand
-      humble_allocator(const humble_allocator&) {}
+      humble_allocator(const humble_allocator& /*other*/)
+	// : storage_(other.storage_)
+      {
+	// if (storage_)
+	//   ++storage_->_refcnt;
+      }
 
       //! Move-constructor claims the allocated memory block (if any).
       humble_allocator(humble_allocator&& other)
@@ -46,21 +55,31 @@ namespace legacy
 	other.storage_ = nullptr;
       }
 
-      //! Copy-constructor does nothing - new region will be allocated on demand
-      template<typename U> humble_allocator(const humble_allocator<U,N>&) {}
-
-      //! Copy assignment does nothing - new region will be allocated on demand
-      humble_allocator& operator=(const humble_allocator&) {return *this;}
-
-      //! Move assignment claims the allocated memory block (if any).
-      humble_allocator& operator=(humble_allocator&& other)
+      template<typename U>
+	humble_allocator(const humble_allocator<U,N>& /*other*/)
+	  // : storage_(other.storage_)
       {
-	if (storage_ && !(--(storage_->_refcnt)))
-	  delete storage_;
-	storage_ = other.storage_;
-	other.storage_ = nullptr;
-	return *this;
+	// if (storage_)
+	//   ++storage_->_refcnt;
       }
+
+      humble_allocator& operator=(const humble_allocator& /*other*/) = delete;
+      // {
+      //   if (storage_ && !(--(storage_->_refcnt)))
+      //     delete storage_;
+      //   storage_ = other.storage_;
+      //   ++(storage_->_refcnt);
+      //   return *this;
+      // }
+
+      humble_allocator& operator=(humble_allocator&& /*other*/) = delete;
+      // {
+      //   if (storage_ && !(--(storage_->_refcnt)))
+      //     delete storage_;
+      //   storage_ = other.storage_;
+      //   other.storage_ = nullptr;
+      //   return *this;
+      // }
 
       pointer allocate(std::size_t n)
       {
@@ -76,18 +95,8 @@ namespace legacy
 
       void deallocate(T *p, std::size_t n)
       {
-	if (storage_ && storage_->deallocate(p, n * sizeof(T)))
-	{
-	  if (storage_->empty())
-	  {
-	    delete storage_;
-	    storage_ = nullptr;
-	  }
-	}
-	else
-	{
+	if (!storage_ || !storage_->deallocate(p, n * sizeof(T)))
 	  throw std::out_of_range("deallocation outside the storage");
-	}
       }
 
       template<typename U, typename... Args>
